@@ -55,8 +55,6 @@ for x, y, z, label in points:
     ax.scatter(x, y, z, c='r', marker='o', s=100)
     ax.text(x+1, y+1, z+1, label, fontsize=12, color='red')
 
-
-
 ax.set_title('3D Phase Portrait for Different Initial Conditions')
 ax.set_xlabel('x')
 ax.set_ylabel('y')
