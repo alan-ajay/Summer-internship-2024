@@ -10,7 +10,7 @@ sigma = 10
 beta = 8/3 
 rho = 20
 
-# Define the system of differential equations
+# System of differential equations
 def lorenz(t, state):
     x, y, z = state
     dxdt = sigma * (y - x)
@@ -18,24 +18,22 @@ def lorenz(t, state):
     dzdt = (x * y - beta * z)
     return [dxdt, dydt, dzdt]
 
-# Define the 3D phase portrait function
+# Solving the system of ODEs
 def phase_portrait_3d(init, T, function, h=0.01):
     t_eval = np.linspace(0, T, 10000)
     sol = solve_ivp(function,[0, T], init, t_eval = t_eval, method='RK45')
     return sol.y[0], sol.y[1], sol.y[2]
 
-# Plotting the 3D phase portrait
+# Plotting
 fig = plt.figure(figsize=(12, 10))
 ax = fig.add_subplot(111, projection='3d')
 
-# Define the range of initial conditions
+# Initial conditions
 divisions = 5
 range = 1
 z_range = np.linspace(-range, range, divisions)
 y_range = np.linspace(-range, range, divisions)
 x_range = np.linspace(-range, range, divisions)
-
-# Time to observe the system
 T = 50
 
 #Plotting the phase portrait for different initial conditions
