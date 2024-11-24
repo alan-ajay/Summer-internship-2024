@@ -42,19 +42,16 @@ def find_peaks_in_y(r_values, t_transient, t_runtime, initial_state):
 
     for r in r_values:
         try:
-            # Solve for transient period
             sol_transient = solve_ivp(lorenz, [0, t_transient], current_state, args=(sigma, r, b))
             final_state = sol_transient.y[:, -1]
 
             if r == 202:
                 print(final_state)
 
-            # Solve for runtime period
             sol_runtime = solve_ivp(lorenz, [0, t_runtime], final_state, args=(sigma, r, b),
                                     t_eval=t_eval_runtime)
             y = sol_runtime.y[1]
 
-            # Find peaks in y
             peaks, _ = find_peaks(y)
             peak_values = y[peaks]
 
@@ -81,11 +78,7 @@ peak_results_descend = find_peaks_in_y(r_values_descend, t_transient, t_runtime,
 
 # Plotting the bifurcation diagram
 plt.figure(figsize=(12, 8))
-
-# Plot ascending values in red
 plt.plot(peak_results_ascend[:, 0], peak_results_ascend[:, 1], 'r.', markersize=0.3, label='r increasing')
-
-# Plot descending values in blue
 plt.plot(peak_results_descend[:, 0], peak_results_descend[:, 1], 'b.', markersize=0.3, label='r decreasing')
 
 plt.xlabel('r')
