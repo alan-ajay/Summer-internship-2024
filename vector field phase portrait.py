@@ -14,12 +14,6 @@ def phase_plane(x_dot, v_dot, x_range, v_range, num_arrows):
     X, V = np.meshgrid(x_values, v_values)
     DX = x_dot(X, V)
     DV = v_dot(X, V)
-
-    # M = np.hypot(DX, DV)
-    # M[M == 0] = 1
-    # DX /= M
-    # DV /= M
-
     plt.quiver(X, V, DX, DV, angles='xy')
     plt.xlabel('x')
     plt.ylabel('v')
